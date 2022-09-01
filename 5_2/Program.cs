@@ -6,7 +6,7 @@ void SumNotEven()
     int[] Array = new int[new Random().Next(2, 15)];
     int length = Array.Length;
     int sum = 0;
-    
+
     for (int index = 0; index < length; index++)
     {
         Array[index] = new Random().Next(-10, 11);
@@ -16,6 +16,6 @@ void SumNotEven()
         }
     }
     Console.WriteLine($"Первоначальный массив: [{String.Join(", ", Array)}]");
-    Console.WriteLine($"Сумма чисел нечётных ппозиций массива: {sum}");
+    Console.WriteLine($"Сумма чисел нечётных позиций массива: {sum}");
 }
 SumNotEven();

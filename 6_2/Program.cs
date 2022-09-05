@@ -27,9 +27,13 @@ void Fun()
 
     if (k1 != k2)
     {
-        double x = Math.Round((b2-b1)/(k1-k2),2);
-        double y = Math.Round((k1 * x + b1), 2);
-        Console.WriteLine($"Точка пересечения прямых ({x} , {y})");
+        double x = (b2-b1)/(k1-k2);
+        double y = (k1 * x + b1);
+
+        double xRound = Math.Round((b2-b1)/(k1-k2),2);
+        double yRound = Math.Round((k1 * x + b1), 2);
+
+        Console.WriteLine($"Точка пересечения прямых ({xRound} ; {yRound})");
     }
     
     else if (k1 == k2 && b1 != b2)

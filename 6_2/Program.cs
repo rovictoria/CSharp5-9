@@ -27,8 +27,8 @@ void Fun()
 
     if (k1 != k2)
     {
-        double x = (b2-b1)/(k1-k2);
-        double y = k1 * x + b1;
+        double x = Math.Round((b2-b1)/(k1-k2),2);
+        double y = Math.Round((k1 * x + b1), 2);
         Console.WriteLine($"Точка пересечения прямых ({x} , {y})");
     }
     

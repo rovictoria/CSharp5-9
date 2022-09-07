@@ -8,6 +8,7 @@ void MyArray()
 {
     Console.Write("Задайте количество чисел, которое хотите ввести: ");
     int M = Convert.ToInt32(Console.ReadLine());
+    
     if (M > 1)
     {
         int count = 0;

@@ -40,3 +40,31 @@ void AverageValue(int[,] matr)
 int[,] matrix = new int[4, 4];
 FillArray(matrix);
 AverageValue(matrix);
+
+
+
+
+
+Console.WriteLine();
+Console.WriteLine("Или способом вывода как в описании:");
+AverageValue1(matrix);
+// Если нужно вывести в строку через запятые и точкой в конце, то:
+void AverageValue1 (int[,] matr)
+{
+    double result;
+    double sum; 
+    Console.Write($"Среднее арифм. каждой строки: ");
+
+    for (int j = 0; j < matr.GetLength(1); j++) //4
+    {
+        sum = 0;
+        for (int i = 0; i < matr.GetLength(0); i++) //3
+        {
+            sum = sum + matr[i, j];
+        }
+        result = sum / matr.GetLength(0);
+
+        if(j != (matr.GetLength(1) - 1)) Console.Write($" {Math.Round(result, 2)}, ");
+        else Console.Write($" {Math.Round(result, 2)}.");
+    }
+}

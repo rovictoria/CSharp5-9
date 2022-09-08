@@ -64,6 +64,10 @@ FillArrayRandom(newMatrix);
 Console.WriteLine("Массив, полученный после замены:");
 ChangeMatrixElements(newMatrix);
 
+Console.WriteLine();
+Console.WriteLine();
+
+
 // Задача 51: Задайте двумерный массив. Найдите сумму
 // элементов, находящихся на главной диагонали (с индексами
 // (0,0); (1; 1) и т.д.
@@ -72,6 +76,24 @@ ChangeMatrixElements(newMatrix);
 // 5 9 2 3
 // 8 4 2 4
 // Сумма элементов главной диагонали: 1+9+2 = 12
+
+void SumOfMainDiagonal(int[,] matr)
+{
+    int sum = 0;
+
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < matr.GetLength(1); j++)
+        {
+            if (i == j) sum = sum + matr[i, j];
+        }
+    }
+        Console.WriteLine($"Сумма элементов главной диагонали = {sum}");
+}
+
+int[,] thirdMatrix = new int[3, 3];
+FillArrayRandom(thirdMatrix);
+SumOfMainDiagonal(thirdMatrix);
 
 
 

@@ -15,8 +15,8 @@ void CountEven()
             count++;
         }
     }
-
-    Console.WriteLine($"Первоначальный массив: [{String.Join(", ", Array)}]");
+Console.WriteLine($"Первоначальный массив: [{String.Join(", ", Array)}]");
+    
 
     if (count == 0)
     {

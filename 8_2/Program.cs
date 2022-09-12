@@ -10,6 +10,8 @@
 int[,] matrixSecondTask = new int[5, 3];
 FillArrayRandom(matrixSecondTask);
 EachSum(matrixSecondTask);
+Console.WriteLine();
+
 FindMinSum(matrixSecondTask);
 
 void FillArrayRandom(int[,] matr)
@@ -27,7 +29,7 @@ void FillArrayRandom(int[,] matr)
     }
 }
 
-int SumRow(int[,] matr, int i)
+int SumRow(int[,] matr, int i)  //считает и возвращает значение суммы для заданной строки
 {
     int sum = 0;
 
@@ -38,7 +40,7 @@ int SumRow(int[,] matr, int i)
     return sum;
 }
 
-void EachSum(int[,] matr)
+void EachSum(int[,] matr)  //отдельно вывод суммы каждой строки для проверки
 {
     for (int i = 0; i < matr.GetLength(0); i++)
     {
@@ -46,7 +48,7 @@ void EachSum(int[,] matr)
     }
 }
 
-void FindMinSum(int[,] matr)
+void FindMinSum(int[,] matr)  //поиск строки с мин. суммой
 {
     Console.WriteLine("Поиск строки с наименьшей суммой элементов:");
     int minIndex = 0;
@@ -54,15 +56,15 @@ void FindMinSum(int[,] matr)
 
     for (int i = 0; i < matr.GetLength(0) - 1; i++)
     {
-        if (SumRow(matr, i) <= SumRow(matr, i + 1))
+        if (SumRow(matr, i + 1) < minSum)
         {
-            minSum = SumRow(matr, i);
-            minIndex = i;
+            minSum = SumRow(matr, i+1);
+            minIndex = i+1;
         }
     }
     Console.WriteLine($"Строка с индексом {minIndex}: сумма = {minSum}.");
 
-    for (int i = 0; i < matr.GetLength(0); i++)
+    for (int i = 0; i < matr.GetLength(0); i++)  //отдельно проверка на равенство с получившимся minSum
     {
         if (SumRow(matr, i) == minSum && minIndex != i) Console.WriteLine($"Строка с индексом {i} имеет ту же сумму.");
     }

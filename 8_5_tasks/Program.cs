@@ -44,7 +44,6 @@ void SystemFromMaxToMin(int[,] matr)
     }
 }
 
-
 void WriteNewMatrix(int[,] matr)
 {
     Console.WriteLine("Упорядоченная матрица:");
@@ -73,42 +72,53 @@ Console.WriteLine();
 // 8 4 2 4
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
-// Первый способ решения задачи, без обращения к методу в каждом i
-Console.WriteLine("Поиск строки с наименьшей суммой элементов");
+int[,] matrixSecondTask = new int[5, 3];
+FillArrayRandom(matrixSecondTask);
+EachSum(matrixSecondTask);
+Console.WriteLine();
 
-int Sum(int[,] matr, int i)
+FindMinSum(matrixSecondTask);
+
+int SumRow(int[,] matr, int i)  //считает и возвращает значение суммы для заданной строки
 {
-    int summ = 0;
+    int sum = 0;
 
     for (int j = 0; j < matr.GetLength(1); j++)
     {
-        summ = summ + matr[i, j];
+        sum = sum + matr[i, j];
     }
-    return summ;
+    return sum;
 }
 
-int minIndex = 0;
-int minSum = 0;
-
-for (int i = 0; (i + 1) < matrix.GetLength(0); i++)
+void EachSum(int[,] matr)  //отдельно вывод суммы каждой строки для проверки
 {
-    if (Sum(matrix, i) < Sum(matrix, i + 1))
+    for (int i = 0; i < matr.GetLength(0); i++)
     {
-        minSum = Sum(matrix, i);
-        minIndex = i;
+        Console.WriteLine($"Сумма {i} строки {SumRow(matr, i)}.");
     }
 }
-Console.WriteLine($"Строка с индексом {minIndex} имеет наименьшую сумму {minSum}");
-Console.WriteLine();
 
-for (int i = 0; (i + 1) < matrix.GetLength(0); i++)
+void FindMinSum(int[,] matr)  //поиск строки с мин. суммой
 {
-    if (Sum(matrix, i) == minSum && minIndex != i) Console.WriteLine($"Строка с индексом {minIndex} имеет ту же сумму");
+    Console.WriteLine("Поиск строки с наименьшей суммой элементов:");
+    int minIndex = 0;
+    int minSum = SumRow(matr, 0);
 
+    for (int i = 0; i < matr.GetLength(0) - 1; i++)
+    {
+        if (SumRow(matr, i + 1) < minSum)
+        {
+            minSum = SumRow(matr, i+1);
+            minIndex = i+1;
+        }
+    }
+    Console.WriteLine($"Строка с индексом {minIndex}: сумма = {minSum}.");
+
+    for (int i = 0; i < matr.GetLength(0); i++)  //отдельно проверка на равенство с получившимся minSum
+    {
+        if (SumRow(matr, i) == minSum && minIndex != i) Console.WriteLine($"Строка с индексом {i} имеет ту же сумму.");
+    }
 }
-
-
-
 
 // Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 // Например, даны 2 матрицы:

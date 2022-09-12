@@ -12,6 +12,8 @@
 
 void FillArrayRandom(int[,] matr)
 {
+    Console.WriteLine("Заданная матрица:");
+
     for (int i = 0; i < matr.GetLength(0); i++)
     {
         for (int j = 0; j < matr.GetLength(1); j++)
@@ -49,6 +51,7 @@ void FillArrayRandom(int[,] matr)
 
 FillArrayRandom(matrix);
 Console.WriteLine();
+
 // SystemFromMaxToMin(matrix);
 
 // Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
@@ -59,6 +62,8 @@ Console.WriteLine();
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
 // Первый способ решения задачи, без обращения к методу в каждом i
+Console.WriteLine("Поиск строки с наименьшей суммой элементов");
+
 void MinSumIndex(int[,] matr)
 {
     int sum1 = 0;
@@ -89,13 +94,13 @@ MinSumIndex(matrix);
 // Второй способ решения задачи, обращение к методу в каждом i
 int Sum(int[,] matr, int i)
 {
-    int sum = 0;
+    int summ = 0;
 
     for (int j = 0; j < matr.GetLength(1); j++)
     {
-        sum = sum + matr[i, j];
+        summ = summ + matr[i, j];
     }
-    return sum;
+    return summ;
 }
 
 int minIndex = -1;
@@ -120,9 +125,11 @@ Console.WriteLine();
 // Результирующая матрица будет:
 // 18 20
 // 15 18
+Console.WriteLine("Нахождение произведения двух матриц");
 
 void NewMatrix(int[,] matr1, int[,] matr2)
 {
+    Console.WriteLine("Результирующая матрица:");
     for (int i = 0; i < matr1.GetLength(0); i++)
     {
         for (int j = 0; j < matr1.GetLength(1); j++)

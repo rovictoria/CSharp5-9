@@ -1,45 +1,65 @@
-﻿void FillArrayRandom(int[,] matr)
-{
-    Console.WriteLine("Заданная матрица:");
+﻿//Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 
-    for (int i = 0; i < matr.GetLength(0); i++)
+Console.Clear();
+Console.WriteLine($"Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.");
+Console.WriteLine($"\nВведите размер массива m x n и диапазон случайных значений:");
+int m = InputNumbers("Введите m: ");
+int n = InputNumbers("Введите n: ");
+int range = InputNumbers("Введите диапазон: от 1 до ");
+
+int[,] array = new int[m, n];
+CreateArray(array);
+WriteArray(array);
+
+Console.WriteLine($"\nОтсортированный массив: ");
+OrderArrayLines(array);
+WriteArray(array);
+
+void OrderArrayLines(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
     {
-        for (int j = 0; j < matr.GetLength(1); j++)
+      for (int k = 0; k < array.GetLength(1) - 1; k++)
+      {
+        if (array[i, k] < array[i, k + 1])
         {
-            matr[i, j] = new Random().Next(-10, 11);
-            Console.Write($"{matr[i, j]}  ");
+          int temp = array[i, k + 1];
+          array[i, k + 1] = array[i, k];
+          array[i, k] = temp;
         }
-        Console.WriteLine();
+      }
     }
+  }
 }
 
-void SystemFromMaxToMin(int[,] matr)
+int InputNumbers(string input)
 {
-    for (int i = 0; i < matr.GetLength(0); i++)
-    {
-        for (int j = 0; j < (matr.GetLength(1) - 1); j++)
-        {
-            int maxPosition = j;
-
-            for (int k = j + 1; k < matr.GetLength(1); k++)
-            {
-                if (matr[i, k] > matr[i, j]) maxPosition = k;
-            }
-
-            int newNumber = matr[i, j];
-            matr[i, j] = matr[i, maxPosition];
-            matr[i, maxPosition] = newNumber;
-
-         Console.Write($"{matr[i, j]}  ");
-         }
-    Console.WriteLine();
-    }
+  Console.Write(input);
+  int output = Convert.ToInt32(Console.ReadLine());
+  return output;
 }
 
-int[,] matrix = new int[3, 4];
+void CreateArray(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      array[i, j] = new Random().Next(range);
+    }
+  }
+}
 
-FillArrayRandom(matrix);
-Console.WriteLine();
-
-SystemFromMaxToMin(matrix);
-Console.WriteLine();
+void WriteArray(int[,] array)
+{
+  for (int i = 0; i < array.GetLength(0); i++)
+  {
+    for (int j = 0; j < array.GetLength(1); j++)
+    {
+      Console.Write(array[i, j] + " ");
+    }
+    Console.WriteLine();
+  }
+}

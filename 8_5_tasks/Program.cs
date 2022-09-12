@@ -12,7 +12,7 @@
 
 void FillArrayRandom(int[,] matr)
 {
-    Console.WriteLine("Заданная матрица:");
+    Console.WriteLine("Неотсортированная матрица:");
 
     for (int i = 0; i < matr.GetLength(0); i++)
     {
@@ -31,26 +31,40 @@ void SystemFromMaxToMin(int[,] matr)
     {
         for (int j = 0; j < (matr.GetLength(1) - 1); j++)
         {
-            int maxPosition = j;
-            for (int k = j + 1; k < matr.GetLength(1); k++)
+            for (int k = 0; k < matr.GetLength(1) - 1; k++)
             {
-                if (matr[i, k] > matr[i, k+1]) maxPosition = k;
+                if (matr[i, k] < matr[i, k + 1])
+                {
+                    int newNumber = matr[i, k + 1];
+                    matr[i, k + 1] = matr[i, k];
+                    matr[i, k] = newNumber;
+                }
             }
-
-            int newNumber = matr[i, j];
-            matr[i, j] = matr[i, maxPosition];
-            matr[i, maxPosition] = newNumber;
-            Console.Write($"{matr[i, j]}  ");
         }
     }
-    Console.WriteLine();
+}
+
+
+void WriteNewMatrix(int[,] matr)
+{
+    Console.WriteLine("Упорядоченная матрица:");
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < (matr.GetLength(1)); j++)
+        {
+            Console.Write($"{matr[i, j]}  ");
+        }
+        Console.WriteLine();
+    }
 }
 
 FillArrayRandom(matrix);
 Console.WriteLine();
+
 SystemFromMaxToMin(matrix);
 
-// SystemFromMaxToMin(matrix);
+WriteNewMatrix(matrix);
+Console.WriteLine();
 
 // Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
 // Например, задан массив:

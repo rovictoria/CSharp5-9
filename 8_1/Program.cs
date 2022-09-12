@@ -31,15 +31,14 @@ void SystemFromMaxToMin(int[,] matr)
     {
         for (int j = 0; j < (matr.GetLength(1) - 1); j++)
         {
-            int maxPos = j;
-
-            for (int k = j + 1; k < matr.GetLength(1); k++)
+            for (int k = 0; k < matr.GetLength(1) - 1; k++)
             {
-                if (matr[i, k] > matr[i, maxPos]) maxPos = k;
-
-                int newNumber = matr[i, j];
-                matr[i, j] = matr[i, maxPos];
-                matr[i, maxPos] = newNumber;
+                if (matr[i, k] < matr[i, k + 1])
+                {
+                    int newNumber = matr[i, k + 1];
+                    matr[i, k + 1] = matr[i, k];
+                    matr[i, k] = newNumber;
+                }
             }
         }
     }
@@ -48,6 +47,7 @@ void SystemFromMaxToMin(int[,] matr)
 
 void WriteNewMatrix(int[,] matr)
 {
+    Console.WriteLine("Упорядоченная матрица:");
     for (int i = 0; i < matr.GetLength(0); i++)
     {
         for (int j = 0; j < (matr.GetLength(1)); j++)
@@ -60,6 +60,8 @@ void WriteNewMatrix(int[,] matr)
 
 FillArrayRandom(matrix);
 Console.WriteLine();
+
 SystemFromMaxToMin(matrix);
-Console.WriteLine();
+
 WriteNewMatrix(matrix);
+Console.WriteLine();

@@ -12,7 +12,7 @@
 
 void FillArrayRandom(int[,] matr)
 {
-    Console.WriteLine("Неотсортированная матрица:");
+    Console.WriteLine("Заданная матрица:");
 
     for (int i = 0; i < matr.GetLength(0); i++)
     {
@@ -119,15 +119,15 @@ for (int i = 0; (i + 1) < matrix.GetLength(0); i++)
 // 15 18
 Console.WriteLine("Нахождение произведения двух матриц");
 
-void NewMatrix(int[,] matr1, int[,] matr2)
+void NewMatrix(int[,] matr1, int[,] matr2, int[,] matr3)
 {
     Console.WriteLine("Результирующая матрица:");
-    for (int i = 0; i < matr1.GetLength(0); i++)
+    for (int i = 0; i < matr3.GetLength(0); i++)
     {
-        for (int j = 0; j < matr1.GetLength(1); j++)
+        for (int j = 0; j < matr3.GetLength(1); j++)
         {
-            matr1[i, j] = matr1[i, j] * matr2[i, j];
-            Console.Write($"{matr1[i, j]}  ");
+            matr3[i, j] = matr1[i, j] * matr2[i, j];
+            Console.Write($"{matr3[i, j]}  ");
         }
         Console.WriteLine();
     }
@@ -138,12 +138,13 @@ int n = 3;
 
 int[,] matrix1 = new int[m, n];
 int[,] matrix2 = new int[m, n];
+int[,] matrix3 = new int[m, n];
 
 FillArrayRandom(matrix1);
 Console.WriteLine();
 FillArrayRandom(matrix2);
 Console.WriteLine();
-NewMatrix(matrix1, matrix2);
+NewMatrix(matrix1, matrix2, matrix3);
 
 
 // Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.

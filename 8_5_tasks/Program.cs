@@ -25,32 +25,30 @@ void FillArrayRandom(int[,] matr)
     }
 }
 
-// void SystemFromMaxToMin(int[,] matr)
-// {
-//     int newNumber = 0;
-//     int max = 0;
+void SystemFromMaxToMin(int[,] matr)
+{
+    for (int i = 0; i < matr.GetLength(0); i++)
+    {
+        for (int j = 0; j < (matr.GetLength(1) - 1); j++)
+        {
+            int maxPosition = j;
+            for (int k = j + 1; k < matr.GetLength(1); k++)
+            {
+                if (matr[i, k] > matr[i, k+1]) maxPosition = k;
+            }
 
-//     for (int i = 0; i < matr.GetLength(0); i++)
-//     {
-//         for (int j = 0; j < matr.GetLength(1); j++)
-//         {
-//             while (j + 1 <= matr.GetLength(1))
-//             {
-//                 if(matr[i, j + 1] > matr[i, j])
-//                 {
-//                 newNumber = matr[i, j];
-//                 matr[i, j] = matr[i, j + 1];
-//                 matr[i, j + 1] = newNumber;
-//                 }
-//             }
-//             Console.Write($"{matr[i, j]}  ");
-//         }
-//         Console.WriteLine();
-//     }
-// }
+            int newNumber = matr[i, j];
+            matr[i, j] = matr[i, maxPosition];
+            matr[i, maxPosition] = newNumber;
+            Console.Write($"{matr[i, j]}  ");
+        }
+    }
+    Console.WriteLine();
+}
 
 FillArrayRandom(matrix);
 Console.WriteLine();
+SystemFromMaxToMin(matrix);
 
 // SystemFromMaxToMin(matrix);
 
@@ -64,34 +62,6 @@ Console.WriteLine();
 // Первый способ решения задачи, без обращения к методу в каждом i
 Console.WriteLine("Поиск строки с наименьшей суммой элементов");
 
-void MinSumIndex(int[,] matr)
-{
-    int sum1 = 0;
-    int minIndex = 0;
-    int sum2 = 0;
-
-    for (int i = 0; i < matr.GetLength(0); i++)
-    {
-        for (int j = 0; j < matr.GetLength(1); j++)
-        {
-            if (i == 0)   sum1 = sum1 + matr[i, j];
-            sum2 = sum2 + matr[i, j];
-        }
-        Console.WriteLine($"Сумма элементов {i} строки = {sum2}");
-
-        if (sum2 < sum1)
-        {
-            sum1 = sum2;
-            minIndex = i;
-        }
-    }
-    Console.WriteLine();
-    Console.WriteLine($"Строка с индексом {minIndex} имеет наименьшую сумму {sum1}");
-}
-
-MinSumIndex(matrix);
-
-// Второй способ решения задачи, обращение к методу в каждом i
 int Sum(int[,] matr, int i)
 {
     int summ = 0;
@@ -103,7 +73,7 @@ int Sum(int[,] matr, int i)
     return summ;
 }
 
-int minIndex = -1;
+int minIndex = 0;
 int minSum = 0;
 
 for (int i = 0; (i + 1) < matrix.GetLength(0); i++)
@@ -114,9 +84,17 @@ for (int i = 0; (i + 1) < matrix.GetLength(0); i++)
         minIndex = i;
     }
 }
-
-Console.WriteLine($"Второй способ: Строка с индексом {minIndex} имеет наименьшую сумму {minSum}");
+Console.WriteLine($"Строка с индексом {minIndex} имеет наименьшую сумму {minSum}");
 Console.WriteLine();
+
+for (int i = 0; (i + 1) < matrix.GetLength(0); i++)
+{
+    if (Sum(matrix, i) == minSum && minIndex != i) Console.WriteLine($"Строка с индексом {minIndex} имеет ту же сумму");
+
+}
+
+
+
 
 // Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 // Например, даны 2 матрицы:
@@ -161,6 +139,30 @@ NewMatrix(matrix1, matrix2);
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
+void AllInOne()
+{
+    int[,,] squareMatrix = new int[2,2,2];
+    Console.WriteLine("Заданная матрица:");
+
+    IEnumerator<int> randoms = Enumerable.Range(0, squareMatrix.Length).Shuffle().GetEnumerator();
+    randoms.MoveNext();
+
+    for (int i = 0; i < squareMatrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < squareMatrix.GetLength(1); j++)
+        {
+            for (int k = 0; k < squareMatrix.GetLength(2); k++, randoms.MoveNext())
+            {
+            squareMatrix[i, j,k] = randoms.Current;
+
+            Console.Write($"{squareMatrix[i, j, k]} ({i},{j},{k}) ");
+            }
+            Console.WriteLine();
+        }
+        
+    }
+}
+AllInOne();
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
 // 01 02 03 04

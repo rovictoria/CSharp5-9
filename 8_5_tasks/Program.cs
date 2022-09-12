@@ -78,6 +78,8 @@ EachSum(matrixSecondTask);
 Console.WriteLine();
 
 FindMinSum(matrixSecondTask);
+Console.WriteLine();
+Console.WriteLine();
 
 int SumRow(int[,] matr, int i)  //считает и возвращает значение суммы для заданной строки
 {
@@ -156,6 +158,9 @@ FillArrayRandom(matrix2);
 Console.WriteLine();
 NewMatrix(matrix1, matrix2, matrix3);
 
+Console.WriteLine();
+Console.WriteLine();
+
 
 // Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2
@@ -164,37 +169,37 @@ NewMatrix(matrix1, matrix2, matrix3);
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
-void AllInOne()
-{
-    int[,,] squareMatrix = new int[2,2,2];
-    Console.WriteLine("Заданная матрица:");
+// void AllInOne()
+// {
+//     int[,,] squareMatrix = new int[2,2,2];
+//     Console.WriteLine("Заданная матрица:");
 
-    IEnumerator<int> randoms = Enumerable.Range(0, squareMatrix.Length).Shuffle().GetEnumerator();
-    randoms.MoveNext();
+//     IEnumerator<int> randoms = Enumerable.Range(0, squareMatrix.Length).Shuffle().GetEnumerator();
+//     randoms.MoveNext();
 
-    for (int i = 0; i < squareMatrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < squareMatrix.GetLength(1); j++)
-        {
-            for (int k = 0; k < squareMatrix.GetLength(2); k++, randoms.MoveNext())
-            {
-            squareMatrix[i, j,k] = randoms.Current;
+//     for (int i = 0; i < squareMatrix.GetLength(0); i++)
+//     {
+//         for (int j = 0; j < squareMatrix.GetLength(1); j++)
+//         {
+//             for (int k = 0; k < squareMatrix.GetLength(2); k++, randoms.MoveNext())
+//             {
+//             squareMatrix[i, j,k] = randoms.Current;
 
-            Console.Write($"{squareMatrix[i, j, k]} ({i},{j},{k}) ");
-            }
-            Console.WriteLine();
-        }
+//             Console.Write($"{squareMatrix[i, j, k]} ({i},{j},{k}) ");
+//             }
+//             Console.WriteLine();
+//         }
         
-    }
-}
-AllInOne();
+//     }
+// }
+// AllInOne();
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
 // 01 02 03 04
 // 12 13 14 05
 // 11 16 15 06
 // 10 09 08 07
-
+Console.WriteLine("Заполняю спирально матрицу и получаю:");
 int[,] matrixSpir = new int[4, 4];
 
 void FillArraySpiral(int[,] matr)

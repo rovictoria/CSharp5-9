@@ -133,20 +133,25 @@ Console.WriteLine("Нахождение произведения двух мат
 
 void NewMatrix(int[,] matr1, int[,] matr2, int[,] matr3)
 {
-    Console.WriteLine("Результирующая матрица:");
-    for (int i = 0; i < matr3.GetLength(0); i++)
+  Console.WriteLine("Результирующая матрица:");
+  for (int i = 0; i < matr3.GetLength(0); i++)
+  {
+    for (int j = 0; j < matr3.GetLength(1); j++)
     {
-        for (int j = 0; j < matr3.GetLength(1); j++)
-        {
-            matr3[i, j] = matr1[i, j] * matr2[i, j];
-            Console.Write($"{matr3[i, j]}  ");
-        }
-        Console.WriteLine();
+      int sum = 0;
+      for (int k = 0; k < matr1.GetLength(1); k++)
+      {
+        sum = sum + matr1[i,k] * matr2[k,j];
+      }
+      matr3[i,j] = sum;
+      Console.Write($"{matr3[i, j]}  ");
     }
+    Console.WriteLine();
+  }
 }
 
 int m = 2; //ввожу внутри кода такие моменты, чтобы избежать доп.условий при вводе пользователем
-int n = 3;
+int n = 2;
 
 int[,] matrix1 = new int[m, n];
 int[,] matrix2 = new int[m, n];

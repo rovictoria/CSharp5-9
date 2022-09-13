@@ -20,7 +20,7 @@ void AllForDifElements(int[,,] matr)
     {
         value = new Random().Next(10, 100);
 
-        for (int j = 0; j < i; i++)
+        for (int j = 0; j < i; j++)
         {
             while (myArray[i] == myArray[j])
             {
@@ -48,6 +48,5 @@ void AllForDifElements(int[,,] matr)
             }
             Console.WriteLine();
         }
-        Console.WriteLine();
     }
 }

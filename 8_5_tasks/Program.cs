@@ -169,30 +169,55 @@ Console.WriteLine();
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
-// void AllInOne()
-// {
-//     int[,,] squareMatrix = new int[2,2,2];
-//     Console.WriteLine("Заданная матрица:");
+int[,,] matrSquare = new int[2, 2, 2];
+AllForDifElements(matrSquare);
 
-//     IEnumerator<int> randoms = Enumerable.Range(0, squareMatrix.Length).Shuffle().GetEnumerator();
-//     randoms.MoveNext();
+void AllForDifElements(int[,,] matr)
+{
+    int lengthArray = matr.GetLength(0) * matr.GetLength(1) * matr.GetLength(2);
+    int[] myArray = new int[lengthArray];  //перемножила длины трёхмерного массива
 
-//     for (int i = 0; i < squareMatrix.GetLength(0); i++)
-//     {
-//         for (int j = 0; j < squareMatrix.GetLength(1); j++)
-//         {
-//             for (int k = 0; k < squareMatrix.GetLength(2); k++, randoms.MoveNext())
-//             {
-//             squareMatrix[i, j,k] = randoms.Current;
+    myArray[0] = new Random().Next(10, 100);
+    int value;
 
-//             Console.Write($"{squareMatrix[i, j, k]} ({i},{j},{k}) ");
-//             }
-//             Console.WriteLine();
-//         }
-        
-//     }
-// }
-// AllInOne();
+    for (int i = 1; i < lengthArray; i++)
+    {
+        value = new Random().Next(10, 100);
+
+        for (int j = 0; j < i; j++)
+        {
+            while (myArray[i] == myArray[j])
+            {
+                myArray[i] = new Random().Next(10, 100);
+                j = 0;
+                value = myArray[i];
+            }
+            value = myArray[i];
+        }
+    }
+
+
+    Console.WriteLine("Заданная матрица:");
+    int index = 0;
+
+    for (int x = 0; x < matr.GetLength(0); x++)
+    {
+        for (int y = 0; y < matr.GetLength(1); y++)
+        {
+            for (int z = 0; z < matr.GetLength(2); z++)
+            {
+                matr[x, y, z] = myArray[index];
+                index++;
+                Console.Write($"{matr[x, y, z]} ({x},{y},{z}) ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+Console.WriteLine();
+Console.WriteLine();
+
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
 // 01 02 03 04

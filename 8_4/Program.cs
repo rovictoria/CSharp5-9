@@ -5,53 +5,50 @@
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
-int[,,] squareMatrix = new int[2, 2, 2];
-AllInOne(squareMatrix);
+int[,,] matrSquare = new int[2, 2, 2];
+AllForDifElements(matrSquare);
 
-
-
-void AllInOne(int[,,] matr)
+void AllForDifElements(int[,,] matr)
 {
-    Console.WriteLine("Заданная матрица:");
+    int lengthMatrix = matr.GetLength(0)*matr.GetLength(1)*matr.GetLength(2);
+    int[] myArray = new int[lengthMatrix]; 
+     //перемножила длины трёхмерного массива
 
-    for (int i = 0; i < squareMatrix.GetLength(0); i++)
-    {
-        for (int j = 0; j < squareMatrix.GetLength(1); j++)
+    myArray[0] = new Random().Next(10, 100);
+    int value;
+
+     for (int i = 1; i < lengthMatrix; i++)
         {
-            for (int k = 0; k < squareMatrix.GetLength(2); k++)
-            {
-                squareMatrix[i, j, k] = new Random().Next(10, 100); ;
+            value = new Random().Next(10, 100);
 
-                Console.Write($"{squareMatrix[i, j, k]} ({i},{j},{k}) ");
+            for (int j = 0; j < i; i++)
+            {
+                while (myArray[i] == myArray[j])
+                {
+                    myArray[i] = new Random().Next(10, 100);
+                    j = 0;
+                    value = myArray[i];
+                }
+                value = myArray[i];
+            }
+        }
+    
+
+    Console.WriteLine("Заданная матрица:");
+    int index = 0;
+
+    for (int x = 0; x < matr.GetLength(0); x++)
+    {
+        for (int y = 0; y < matr.GetLength(1); y++)
+        {
+            for (int z = 0; z < matr.GetLength(2); z++)
+            {
+                matr[x, y, z] = myArray[index];
+                index++;
+                Console.Write($"{matr[x, y, z]} ({x},{y},{z}) ");
             }
             Console.WriteLine();
         }
-
+        Console.WriteLine();
     }
 }
-
-
-// void CreateArray(int[,,] matr) //создаю одномерный массив из полученных значений
-// {
-//     int[] array = new int[8];  //перемножила длины трёхмерного массива
-//     int value = 0;
-
-//     for (int i = 0; i < array.Length; i++)
-//     {
-//         array[i] = new Random().Next(10, 100);
-//         value = array[i];
-
-//         for (int j = i + 1; j < array.Length; i++)
-//         {
-//             while(array[i] == array[j])
-//             {
-//                array[i] = new Random().Next(10, 100); 
-//                j = 0
-//             }
-//         }
-//     }
-
-//     Console.WriteLine(String.Join(", ", array));
-// }
-
-// CreateArray();

@@ -10,29 +10,28 @@ AllForDifElements(matrSquare);
 
 void AllForDifElements(int[,,] matr)
 {
-    int lengthMatrix = matr.GetLength(0)*matr.GetLength(1)*matr.GetLength(2);
-    int[] myArray = new int[lengthMatrix]; 
-     //перемножила длины трёхмерного массива
+    int lengthArray = matr.GetLength(0) * matr.GetLength(1) * matr.GetLength(2);
+    int[] myArray = new int[lengthArray];  //перемножила длины трёхмерного массива
 
     myArray[0] = new Random().Next(10, 100);
     int value;
 
-     for (int i = 1; i < lengthMatrix; i++)
-        {
-            value = new Random().Next(10, 100);
+    for (int i = 1; i < lengthArray; i++)
+    {
+        value = new Random().Next(10, 100);
 
-            for (int j = 0; j < i; i++)
+        for (int j = 0; j < i; i++)
+        {
+            while (myArray[i] == myArray[j])
             {
-                while (myArray[i] == myArray[j])
-                {
-                    myArray[i] = new Random().Next(10, 100);
-                    j = 0;
-                    value = myArray[i];
-                }
+                myArray[i] = new Random().Next(10, 100);
+                j = 0;
                 value = myArray[i];
             }
+            value = myArray[i];
         }
-    
+    }
+
 
     Console.WriteLine("Заданная матрица:");
     int index = 0;

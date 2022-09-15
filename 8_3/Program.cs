@@ -23,34 +23,42 @@ void FillArrayRandom(int[,] matr)
 
 Console.WriteLine("Нахождение произведения двух матриц");
 
-void NewMatrix(int[,] matr1, int[,] matr2, int[,] matr3)
+void NewMatrix(int[,] matr1, int[,] matr2)
 {
-  Console.WriteLine("Результирующая матрица:");
-  for (int i = 0; i < matr3.GetLength(0); i++)
-  {
-    for (int j = 0; j < matr3.GetLength(1); j++)
+    if (matr1.GetLength(1) == matr2.GetLength(0))
     {
-      int sum = 0;
-      for (int k = 0; k < matr1.GetLength(1); k++)
+      int size;
+      if (matr1.GetLength(0) > matr1.GetLength(1)) size = matr1.GetLength(0);
+      else size = matr1.GetLength(1);
+
+      int[,] matr3 = new int[size, size];
+
+      Console.WriteLine("Результирующая матрица:");
+      for (int i = 0; i < matr2.GetLength(0); i++)
       {
-        sum = sum + matr1[i,k] * matr2[k,j];
+        for (int j = 0; j < matr2.GetLength(1); j++)
+        {
+          for (int k = 0; k < matr1.GetLength(1); k++)
+          {
+            matr3[i, j] = matr3[i, j] + matr1[i, k] * matr2[k, j];
+          }
+          Console.Write($"{matr3[i, j]}  ");
+        }
+        Console.WriteLine();
       }
-      matr3[i,j] = sum;
-      Console.Write($"{matr3[i, j]}  ");
     }
-    Console.WriteLine();
-  }
+    else 
+    {
+      Console.WriteLine("Умножение невозможно.");
+      Console.WriteLine("Введите другие размерности матриц, чтобы кол-во столбцов 1 было = кол-ву  строк 2");
+    }
 }
 
-int m = 3; //ввожу внутри кода такие моменты, чтобы избежать доп.условий при вводе пользователем
-int n = 3;
+    int[,] matrix1 = new int[2, 3];
+    int[,] matrix2 = new int[3, 2];
 
-int[,] matrix1 = new int[m, n];
-int[,] matrix2 = new int[m, n];
-int[,] matrix3 = new int[m, n];
-
-FillArrayRandom(matrix1);
-Console.WriteLine();
-FillArrayRandom(matrix2);
-Console.WriteLine();
-NewMatrix(matrix1, matrix2, matrix3);
+    FillArrayRandom(matrix1);
+    Console.WriteLine();
+    FillArrayRandom(matrix2);
+    Console.WriteLine();
+    NewMatrix(matrix1, matrix2);

@@ -48,7 +48,7 @@ int SumNatural(int m, int n)
     }
     else
     {
-        Console.WriteLine($"Введённые числа не удовлетворяют условию");
+        Console.WriteLine($"Введённые числа не удовлетворяют условию"); //это можно и вне метода сделать как в 3 задаче
         return 0;
     }
 }
@@ -77,7 +77,7 @@ int m = 3;
 int n = 2;
 
 // Если убрать это, то оставить только Console.WriteLine(Akkerman(m, n));
-if (m >= 0 && n >= 0) Console.WriteLine($"Результат функции Аккермана для заданных (m,n): {Akkerman(m, n)}");
+if (m >= 0 && n >= 0) Console.WriteLine($"Результат функции Аккермана для заданных (m, n): {Akkerman(m, n)}");
 else Console.WriteLine("Введите неотрицательные числа m и n, расчёт с вашими данными невозможен");
 
 
